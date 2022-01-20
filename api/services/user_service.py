@@ -29,9 +29,9 @@ class UserService:
         user = db_session.query(User).filter(User.ID == user_id).first()
 
         if user:
-            user.NAME = name if not(name) else user.NAME
-            user.WEIGHT = weight if not(weight) else user.WEIGHT
-            user.DESCRIPTION = description if not(description) else user.DESCRIPTION
+            user.NAME = name if name else user.NAME
+            user.WEIGHT = weight if weight else user.WEIGHT
+            user.DESCRIPTION = description if description else user.DESCRIPTION
 
             db_session.commit()
             db_session.refresh(user)

@@ -1,3 +1,4 @@
+from email.policy import default
 from fastapi.responses import JSONResponse
 from typing import Optional
 from sqlalchemy.orm import Session
@@ -53,7 +54,7 @@ class Users(Resource):
         return response
 
 
-    def put(self, action: str, ID: int, NAME: Optional[str] = Body(...), WEIGHT: Optional[float] = Body(...), DESCRIPTION: Optional[str] = Body(...), session: Session = Depends(db_session) ):
+    def put(self, action: str, ID: int, NAME: Optional[str] = Body(None), WEIGHT: Optional[float] = Body(None), DESCRIPTION: Optional[str] = Body(None), session: Session = Depends(db_session) ):
 
         if action == "user":
             user = user_service.edit_user( session, ID, NAME, WEIGHT, DESCRIPTION)
